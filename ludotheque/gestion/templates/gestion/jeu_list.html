@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Liste des jeux</h1>
+
+  <ul>
+    {% for jeu in object_list %}
+      <li style="margin-bottom: 15px; display: flex; align-items: center;">
+        {% if jeu.photo_boite %}
+          <img src="{{ jeu.photo_boite.url }}" alt="Image de {{ jeu.titre }}" style="width: 80px; height: auto; margin-right: 10px;">
+        {% else %}
+          <div style="width: 80px; height: 80px; background: #ddd; margin-right: 10px;"></div>
+        {% endif %}
+
+        <div>
+          <strong>
+            <a href="{% url 'fiche_jeu' jeu.pk %}">{{ jeu.titre }}</a>
+          </strong> |
+          Catégorie : {{ jeu.categorie.nom }} |
+          Auteur : {{ jeu.auteur }} |
+          Éditeur : {{ jeu.editeur }} |
+          <a href="{% url 'modifier_jeu' jeu.id %}">Modifier</a> |
+          <a href="{% url 'supprimer_jeu' jeu.id %}">Supprimer</a>
+        </div>
+      </li>
+    {% empty %}
+      <li>Aucun jeu enregistré.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'ajouter_jeu' %}">
+    <button>Ajouter un jeu</button>
+  </a>
+{% endblock %}

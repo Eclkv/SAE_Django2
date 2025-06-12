@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Jeux de la catégorie : {{ object.nom }}</h2>
+
+  {% if jeux %}
+    <ul>
+      {% for jeu in jeux %}
+        <li>{{ jeu.titre }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucun jeu dans cette catégorie.</p>
+  {% endif %}
+
+  <a href="{% url 'liste_categories' %}">← Retour à la liste des catégories</a>
+{% endblock %}

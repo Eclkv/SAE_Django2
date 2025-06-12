@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Ajouter un jeu</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p><strong>Titre :</strong> {{ form.titre }}</p>
+    <p><strong>Année de sortie :</strong> {{ form.annee_sortie }}</p>
+    <p><strong>Photo de la boîte :</strong> {{ form.photo_boite }}</p>
+
+    <hr>
+
+    <h4>Catégorie</h4>
+    <p><strong>Catégorie existante :</strong> {{ form.categorie_existant }}</p>
+    <p><strong>Ou nouvelle catégorie :</strong> {{ form.nouvelle_categorie }}</p>
+
+    <hr>
+
+    <h4>Auteur</h4>
+    <p><strong>Auteur existant :</strong> {{ form.auteur_existant }}</p>
+    <p><strong>Ou nouvel auteur :</strong></p>
+    <p>Nom : {{ form.auteur_nom }}</p>
+    <p>Prénom : {{ form.auteur_prenom }}</p>
+    <p>Âge : {{ form.auteur_age }}</p>
+
+    <hr>
+
+    <h4>Éditeur</h4>
+    <p><strong>Éditeur existant :</strong> {{ form.editeur_existant }}</p>
+    <p><strong>Ou nouvel éditeur :</strong> {{ form.editeur_nom }}</p>
+
+    <hr>
+
+    <button type="submit">Ajouter</button>
+  </form>
+{% endblock %}

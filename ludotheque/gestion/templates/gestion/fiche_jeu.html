@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ jeu.titre }}</h1>
+
+  {% if jeu.photo_boite %}
+    <img src="{{ jeu.photo_boite.url }}" alt="Image de {{ jeu.titre }}" style="max-width: 400px; height: auto; margin-bottom: 20px;">
+  {% endif %}
+
+  <p><strong>Catégorie :</strong> {{ jeu.categorie.nom }}</p>
+  <p><strong>Auteur :</strong> {{ jeu.auteur }}</p>
+  <p><strong>Éditeur :</strong> {{ jeu.editeur }}</p>
+  <p><strong>Description :</strong> {{ jeu.description }}</p>
+
+  <h2>Commentaires</h2>
+  {% if commentaires %}
+    <ul>
+      {% for commentaire in commentaires %}
+        <li><strong>{{ commentaire.joueur }} :</strong> {{ commentaire.texte }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucun commentaire pour ce jeu.</p>
+  {% endif %}
+
+  <a href="{% url 'liste_jeux' %}">← Retour à la liste</a>
+{% endblock %}

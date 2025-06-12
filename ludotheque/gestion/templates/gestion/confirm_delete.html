@@ -1,0 +1,7 @@
+<h1>Supprimer</h1>
+<form method="post">
+  {% csrf_token %}
+  <p>Confirmer la suppression ?</p>
+  <input type="submit" value="Supprimer">
+</form>
+<a href="javascript:history.back()">Annuler</a>
