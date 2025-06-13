@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
+
 {% block content %}
-  <h1>Liste des catégories</h1>
+  <h1>Liste des éditeurs</h1>
 
   <ul>
     {% for obj in object_list %}
       <li>
-        <a href="{% url 'jeux_par_categorie' obj.id %}">
-          {{ obj.nom }}
-        </a> |
-        <a href="modifier/{{ obj.id }}/">Modifier</a> |
-        <a href="supprimer/{{ obj.id }}/">Supprimer</a>
+        {{ obj.nom }} |
+        <a href="{% url 'modifier_editeur' obj.id %}">Modifier</a> |
+        <a href="{% url 'supprimer_editeur' obj.id %}">Supprimer</a>
       </li>
+    {% empty %}
+      <li>Aucun éditeur enregistré.</li>
     {% endfor %}
   </ul>
 
-  <a href="{% url 'ajouter_jeu' %}">
-    <button>Ajouter un jeu</button>
+  <a href="{% url 'ajouter_editeur' %}">
+    <button>Ajouter un éditeur</button>
   </a>
-
 {% endblock %}

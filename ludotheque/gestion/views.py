@@ -2,7 +2,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from .models import Jeu, Auteur, Categorie, Joueur, Commentaire, Editeur
-from .forms import JeuForm
+from .forms import JeuForm , JeuEditForm
 from .models import Editeur
 # Vues génériques de base
 class ListeGenerique(ListView):
@@ -30,9 +30,12 @@ class AjouterJeu(FormulaireGenerique):
     model = Jeu
     form_class = JeuForm
 
-class ModifierJeu(ModifierGenerique):
+class ModifierJeu(UpdateView):
     model = Jeu
-    fields = '__all__'
+    form_class = JeuEditForm
+    template_name = 'gestion/formulaire_modif_jeu.html'
+    success_url = reverse_lazy('liste_jeux')
+
 
 class SupprimerJeu(SupprimerGenerique):
     model = Jeu
@@ -151,6 +154,6 @@ class ListeEditeurs(ListeGenerique):
 
 class ModifierEditeur(UpdateView):
     model = Editeur
-    fields = '__all__'
-    template_name = 'gestion/formulaire.html'
+    fields = ['nom']
+    template_name = 'gestion/modifier_editeur.html'  # ← nouveau template
     success_url = reverse_lazy('liste_editeurs')

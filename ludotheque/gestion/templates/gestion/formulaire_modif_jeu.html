@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Modifier le jeu</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p><strong>Titre :</strong> {{ form.titre }}</p>
+    <p><strong>Année de sortie :</strong> {{ form.annee_sortie }}</p>
+    <p><strong>Photo de la boîte :</strong> {{ form.photo_boite }}</p>
+    <p><strong>Catégorie :</strong> {{ form.categorie }}</p>
+    <p><strong>Auteur :</strong> {{ form.auteur }}</p>
+    <p><strong>Éditeur :</strong> {{ form.editeur }}</p>
+
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+
+  <a href="{% url 'liste_jeux' %}">← Retour à la liste des jeux</a>
+{% endblock %}

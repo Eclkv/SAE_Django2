@@ -82,3 +82,7 @@ class JeuForm(forms.ModelForm):
         if commit:
             jeu.save()
         return jeu
+class JeuEditForm(forms.ModelForm):
+    class Meta:
+        model = Jeu
+        fields = ['titre', 'annee_sortie', 'photo_boite', 'categorie', 'auteur', 'editeur']
